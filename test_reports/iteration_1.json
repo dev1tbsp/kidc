@@ -1,0 +1,73 @@
+{
+  "summary": "First-pass full-stack testing of Kids Feast catering MVP. Backend: 19/20 pytest tests passed (one brute-force lockout test failed due to ingress IP variability across pods). Frontend: All public pages load and render seeded content correctly; 6-step quote calculator works with dynamic estimate; admin login, protected route redirect, all 7 admin tabs, package CRUD path, and logout all working.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/auth/login (brute-force lockout)",
+        "issue": "Lockout fails in this environment because the rate-limit identifier uses `request.client.host` which is the immediate ingress/proxy IP. Behind a load balancer (Kubernetes ingress here) requests for the same user arrive from MULTIPLE source IPs (observed 10.208.130.77 and 10.208.130.78 splitting attempts 4+2), so the per-identifier counter never reaches the 5-attempt threshold. This effectively defeats the brute-force protection in production.",
+        "priority": "HIGH",
+        "fix_suggestion": "Use `request.headers.get('X-Forwarded-For', '').split(',')[0].strip() or request.client.host` for ip, or key the rate limit solely on the lowercased email (more deterministic) instead of ip:email."
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "CORS config",
+        "issue": "backend/.env has `CORS_ORIGINS=\"*\"` while server uses `allow_credentials=True`. The wildcard is still injected into the allowed origins list. Browsers reject `Access-Control-Allow-Origin: *` with credentials. It happens to work today only because FRONTEND_URL is appended explicitly and CORSMiddleware picks the first matching exact origin, but the `*` entry is misleading/dead config and should be removed or replaced with explicit origins."
+      },
+      {
+        "endpoint": "POST /api/auth/logout",
+        "issue": "Requires authentication (Depends(get_current_user)). If the access token is missing/expired, logout returns 401 and frontend silently swallows it. Cookies might remain set on the client. Consider making logout idempotent (always clear cookies)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Quote step 6 - Your Details / Step 1 Preferred date",
+        "issues": [
+          "Uses native browser date picker (<input type=date>) instead of a shadcn calendar component as recommended for consistent styling across browsers.",
+          "Phone input uses placeholder '+1 555 555 5555' but type is text (not tel). Adds no mobile keypad on phones and made automated tel-locator targeting fail. Recommend type='tel'."
+        ]
+      },
+      {
+        "screen": "Admin dashboard",
+        "issues": [
+          "First tab label is 'Quote Requests' while the stat card / spec calls it 'Quotes'. Minor naming inconsistency."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix brute-force lockout identifier so it survives multi-IP ingress (use X-Forwarded-For or email-only key).",
+    "Tighten CORS: remove `*` from CORS_ORIGINS in backend/.env since credentials=True is enabled; rely on FRONTEND_URL.",
+    "Make /api/auth/logout idempotent (don't require auth, always clear cookies).",
+    "Use type='tel' for phone input on /quote step 6; consider shadcn Calendar/DatePicker for preferred date."
+  ],
+  "critical_code_review_comments": [
+    "server.py is ~545 lines and mixes models, auth, routes, seeding. Consider splitting into models/, routes/, auth/, seed/ modules for maintainability.",
+    "PATCH /api/admin/quotes/{id} accepts a raw dict for status — should be a typed Pydantic model with allowed status enum to prevent invalid status writes.",
+    "_make_admin_crud accepts a raw dict and forwards to model_cls(**body); this silently ignores missing required fields only if the model has defaults. Update endpoint stores arbitrary keys (no validation) — a malicious admin could pollute documents. Validate updates against the Pydantic model too.",
+    "Quote estimated_total is taken from the request body (client-controlled). Backend should recompute it from package + guest_count + snack box to prevent tampering.",
+    "Login does not normalise email for the rate-limit key when the user does not exist (it is normalised — OK), but successful login response uses user['email'] casing from DB. Minor consistency note.",
+    "JWT exp uses 60 min access + 7d refresh, but frontend does not call /auth/refresh anywhere — long sessions will silently 401 after an hour with no auto-refresh on the client."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py (new)"
+  ],
+  "success_rate": {
+    "backend": "95% (19/20 pytest)",
+    "frontend": "100% on tested flows"
+  },
+  "test_credentials": "admin@kidsfeast.com / admin123 (from /app/memory/test_credentials.md, confirmed working).",
+  "seed_data_creation": "No new seed data. Test data was created (TEST_Package, TEST quote, brute_<ts>@example.com login attempts) and cleaned up via mongosh.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend tests live at /app/backend/tests/backend_test.py; run with `pytest /app/backend/tests/backend_test.py -v --junitxml=/app/test_reports/pytest/pytest_results.xml`. The brute-force lockout test is environment-sensitive: in this kubernetes preview the ingress source IP varies across requests, so the per-(ip:email) counter never accumulates to 5. After any code change that switches the identifier to X-Forwarded-For or email-only, clear db.login_attempts before re-running: `mongosh kidsfeast_db --eval 'db.login_attempts.deleteMany({})'`. All public endpoints, auth, admin CRUD, and quote submission were verified end-to-end via both pytest and Playwright. Admin tab label is 'Quote Requests' (not 'Quotes').",
+  "rca_of_the_issue": "Brute-force lockout RCA: In server.py login() the identifier is `f\"{ip}:{email}\"` where ip = request.client.host. In Kubernetes with multi-replica ingress, request.client.host is the per-hop proxy IP, which differs across requests for the same client. Verified by inspecting db.login_attempts after sending 6 wrong logins for the same email — entries split across 10.208.130.77 (count=4) and 10.208.130.78 (count=2). Neither reached the 5-attempt lock threshold. Mitigation: extract client IP from `X-Forwarded-For` header (first value) before falling back to request.client.host, OR key the throttle on email only."
+}
