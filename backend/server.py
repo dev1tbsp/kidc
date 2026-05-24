@@ -12,11 +12,14 @@ import jwt
 from datetime import datetime, timezone, timedelta
 from typing import List, Optional, Annotated
 
-from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends, UploadFile, File
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from bson import ObjectId
 from pydantic import BaseModel, Field, EmailStr, ConfigDict, BeforeValidator
+
+from email_service import send_quote_notification
+from storage_service import upload_image, is_configured as storage_is_configured
 
 
 # ----- Config -----
@@ -337,6 +340,14 @@ async def create_quote(body: QuoteCreate):
     payload["estimated_total"] = round(total, 2)
     obj = QuoteRequest(**payload)
     await db.quote_requests.insert_one(obj.model_dump())
+
+    # Fire-and-forget email notification (non-blocking)
+    try:
+        email_result = await send_quote_notification(obj.model_dump())
+        logger.info(f"Quote notification: {email_result}")
+    except Exception as e:
+        logger.error(f"Quote notification error (non-fatal): {e}")
+
     return {"id": obj.id, "estimated_total": obj.estimated_total, "status": obj.status}
 
 
@@ -397,6 +408,26 @@ async def update_site_info(body: dict, _admin: dict = Depends(require_admin)):
     body.pop("_id", None)
     await db.site_info.update_one({"_id": "main"}, {"$set": body}, upsert=True)
     return {"ok": True}
+
+
+# ----- ADMIN: IMAGE UPLOAD (Cloudflare R2) -----
+@api.get("/admin/storage-status")
+async def storage_status(_admin: dict = Depends(require_admin)):
+    return {"configured": storage_is_configured()}
+
+
+@api.post("/admin/upload/image")
+async def upload_admin_image(file: UploadFile = File(...), _admin: dict = Depends(require_admin)):
+    if not file.content_type:
+        raise HTTPException(status_code=400, detail="Missing file content type")
+    try:
+        data = await file.read()
+        result = await upload_image(data, file.content_type, file.filename or "")
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e))
 
 
 # ----- STARTUP: indexes + seed -----

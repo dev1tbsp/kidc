@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import ImageUploader from "@/components/ImageUploader";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 
@@ -136,6 +137,8 @@ export default function CrudAdmin({ name, title, fields }) {
                     <div><Switch checked={!!form[f.key]} onCheckedChange={(v) => setForm({ ...form, [f.key]: v })} /></div>
                   ) : f.type === "list" ? (
                     <Input id={f.key} value={Array.isArray(form[f.key]) ? form[f.key].join(", ") : (form[f.key] || "")} onChange={(e) => setForm({ ...form, [f.key]: e.target.value })} placeholder="item1, item2, item3" className="rounded-2xl py-6" />
+                  ) : f.type === "image" ? (
+                    <ImageUploader value={form[f.key]} onChange={(v) => setForm({ ...form, [f.key]: v })} />
                   ) : (
                     <Input id={f.key} type={f.type === "number" ? "number" : "text"} value={form[f.key] ?? ""} onChange={(e) => setForm({ ...form, [f.key]: e.target.value })} className="rounded-2xl py-6" />
                   )}

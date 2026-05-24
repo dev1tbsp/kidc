@@ -131,7 +131,7 @@ const snackBoxFields = [
   { key: "description", label: "Description", type: "textarea" },
   { key: "price", label: "Price ($)", type: "number" },
   { key: "items", label: "Items (comma-sep)", type: "list" },
-  { key: "image", label: "Image URL", type: "text" },
+  { key: "image", label: "Image", type: "image" },
   { key: "order", label: "Order", type: "number" },
 ];
 
@@ -145,7 +145,7 @@ const testimonialFields = [
 ];
 
 const galleryFields = [
-  { key: "url", label: "Image URL", type: "text" },
+  { key: "url", label: "Image", type: "image" },
   { key: "caption", label: "Caption", type: "text" },
   { key: "category", label: "Category (party/cake/food/activity/people)", type: "text" },
   { key: "order", label: "Order", type: "number" },
