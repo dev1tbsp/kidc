@@ -1,0 +1,101 @@
+{
+  "theme": "light",
+  "archetype": "6 (Vibrant Play)",
+  "typography": {
+    "heading_font": "Fredoka",
+    "body_font": "Nunito",
+    "scales": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-bold",
+      "body": "text-base sm:text-lg leading-relaxed text-slate-700",
+      "overline": "text-sm font-bold uppercase tracking-[0.2em] text-sky-500"
+    },
+    "rules": [
+      "Never use Inter for headings.",
+      "Import Fredoka and Nunito from Google Fonts or standard libraries.",
+      "Headings must use tight letter spacing.",
+      "Use rounded, friendly typography to match the brand."
+    ]
+  },
+  "colors": {
+    "palette": {
+      "background": "bg-slate-50",
+      "surface": "bg-white",
+      "primary": "bg-sky-500 hover:bg-sky-600 text-white",
+      "secondary": "bg-amber-400 hover:bg-amber-500 text-slate-900",
+      "accent_pink": "bg-pink-400 text-white",
+      "accent_mint": "bg-emerald-400 text-slate-900",
+      "text_dark": "text-slate-800",
+      "text_muted": "text-slate-500"
+    },
+    "rules": [
+      "Avoid muddy colors. Keep saturation high for accents.",
+      "Use pure white cards on off-white backgrounds for clarity.",
+      "Text contrast must meet 4.5:1 ratio.",
+      "Use colorful gradients sparingly, prefer solid vibrant blocks."
+    ]
+  },
+  "layout_and_spacing": {
+    "grid": "Bento-style grids for features and offerings to create a playful asymmetry.",
+    "spacing": "Generous spacing. Use p-8 to p-12 for cards.",
+    "border_radius": "rounded-3xl or rounded-[2rem] for maximum playfulness.",
+    "rules": [
+      "Avoid sharp edges completely. Everything should feel soft and tactile.",
+      "Use optical alignment.",
+      "Break out of rigid bootstrap grids. Use overlapping elements."
+    ]
+  },
+  "components": {
+    "buttons": "Pill-shaped (rounded-full). Chunky padding (px-8 py-4 text-lg). Add a subtle drop shadow and -translate-y-1 on hover.",
+    "cards": "White background, large border-radius (rounded-3xl), soft playful shadows (shadow-xl shadow-sky-500/10). Optional 2px borders in pastel colors.",
+    "inputs": "Rounded-2xl, thick borders on focus (ring-4 ring-sky-300), large text, generous padding.",
+    "quote_calculator": "Card-based stepper or grid selector. Use selectable image cards for age group and activities instead of standard radio buttons.",
+    "navigation": "Sticky glass header (backdrop-blur-xl bg-white/80) with a prominent CTA button."
+  },
+  "motion": {
+    "hover": "Scale up slightly (scale-105) and rotate slightly (rotate-1 or -rotate-1) for a bouncy, energetic feel.",
+    "entrance": "Staggered fade up with spring physics (Framer Motion).",
+    "background": "Use slow-moving, large CSS radial gradients in the background to simulate floating balloons or clouds."
+  },
+  "media": {
+    "hero": "https://images.unsplash.com/photo-1530104091755-015d31dfa0b9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxraWRzJTIwYmlydGhkYXklMjBwYXJ0eSUyMHBsYXlpbmclMjBiYWxsb29uc3xlbnwwfHx8fDE3Nzk2MTQ3MTl8MA&ixlib=rb-4.1.0&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509666537727-9154b6962292?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwyfHxraWRzJTIwYmlydGhkYXklMjBwYXJ0eSUyMHBsYXlpbmclMjBiYWxsb29uc3xlbnwwfHx8fDE3Nzk2MTQ3MTl8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.pexels.com/photos/8422098/pexels-photo-8422098.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.unsplash.com/photo-1627764927037-a4c3b80b6bb7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHw0fHxraWRzJTIwYmlydGhkYXklMjBwYXJ0eSUyMHBsYXlpbmclMjBiYWxsb29uc3xlbnwwfHx8fDE3Nzk2MTQ3MTl8MA&ixlib=rb-4.1.0&q=85"
+    ],
+    "food_and_snacks": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwzfHxraWRzJTIwcGFydHklMjBmb29kJTIwc25hY2tzJTIwY3VwY2FrZXN8ZW58MHx8fHwxNzc5NjE0NzE5fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.pexels.com/photos/9147799/pexels-photo-9147799.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
+    "testimonials": [
+      "https://images.pexels.com/photos/4868635/pexels-photo-4868635.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ]
+  },
+  "pages_structure": {
+    "marketing_site": [
+      "Hero Section: Overlapping soft blobs, vibrant hero image, massive fun typography.",
+      "Age Groups: Bento grid of colorful cards with bouncy hover effects.",
+      "Activities & Offerings: Carousel or masonry grid.",
+      "Catering Packages: 3-column playful pricing table. Use 'SaaSFrame' inspired card layout but heavily styled with pastel borders and badges.",
+      "Snack Boxes: Large imagery, 2-column offset layout.",
+      "Dynamic Quote Calculator: Interactive multi-step form inside a prominent colored section (e.g., sky blue background).",
+      "Testimonials: Marquee of colorful feedback cards.",
+      "Footer: Massive brand text, Newsletter sign up, Social links."
+    ],
+    "admin_panel": [
+      "Layout: Swiss/Soft UI hybrid for clarity, distinct from the marketing site to ensure productivity.",
+      "Features: Manage Packages, Edit Prices, View/Update Testimonials, Gallery Uploads, View Quote Requests."
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install and use lucide-react for standard icons, but wrap them in colorful circular backgrounds (e.g., bg-amber-100 text-amber-500 p-3 rounded-full).",
+    "Ensure the quote calculator feels like a fun quiz. Avoid boring standard radio buttons; use visual card selectors.",
+    "Use heavily rounded corners (rounded-3xl or rounded-full) on all interactive elements to maintain the 'Vibrant Play' archetype.",
+    "Add data-testid attributes to all form inputs, buttons, and calculable outputs (e.g., data-testid='quote-calculator-total').",
+    "Create moving background textures using pure CSS radial gradients (e.g., massive pastel blue and yellow blurs positioned absolute behind hero).",
+    "Do NOT use placeholder images. Rely ENTIRELY on the media URLs provided in this JSON.",
+    "Use raw HTML/Tailwind for creative marketing layouts, and Shadcn (heavily customized) for the Admin panel and Quote Calculator logic."
+  ]
+}
