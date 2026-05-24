@@ -222,8 +222,10 @@ async def _fetch_list(collection: str, sort_field: str = "order"):
 @api.post("/auth/login")
 async def login(body: LoginRequest, request: Request, response: Response):
     email = body.email.lower().strip()
-    ip = request.client.host if request.client else "unknown"
-    identifier = f"{ip}:{email}"
+    # X-Forwarded-For first (multi-IP ingress), else client IP. Throttle by email primarily.
+    fwd = request.headers.get("x-forwarded-for", "")
+    ip = fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else "unknown")
+    identifier = f"email:{email}"
 
     # Brute force check
     attempt = await db.login_attempts.find_one({"identifier": identifier})
@@ -236,7 +238,7 @@ async def login(body: LoginRequest, request: Request, response: Response):
     if not user or not verify_password(body.password, user["password_hash"]):
         # increment attempts
         count = (attempt.get("count", 0) if attempt else 0) + 1
-        update = {"count": count, "updated_at": datetime.now(timezone.utc).isoformat()}
+        update = {"count": count, "ip": ip, "updated_at": datetime.now(timezone.utc).isoformat()}
         if count >= 5:
             update["locked_until"] = (datetime.now(timezone.utc) + timedelta(minutes=15)).isoformat()
         await db.login_attempts.update_one({"identifier": identifier}, {"$set": {"identifier": identifier, **update}}, upsert=True)
@@ -252,7 +254,7 @@ async def login(body: LoginRequest, request: Request, response: Response):
 
 
 @api.post("/auth/logout")
-async def logout(response: Response, _user: dict = Depends(get_current_user)):
+async def logout(response: Response):
     clear_auth_cookies(response)
     return {"ok": True}
 
@@ -321,7 +323,19 @@ async def site_info():
 # ----- QUOTES -----
 @api.post("/quotes")
 async def create_quote(body: QuoteCreate):
-    obj = QuoteRequest(**body.model_dump())
+    # Recompute total server-side to prevent client tampering
+    total = 0.0
+    if body.package_id:
+        pkg = await db.packages.find_one({"id": body.package_id}, {"_id": 0})
+        if pkg:
+            total += float(pkg["price_per_child"]) * int(body.guest_count)
+    if body.snack_box_id and body.add_on_snack_count > 0:
+        sb = await db.snack_boxes.find_one({"id": body.snack_box_id}, {"_id": 0})
+        if sb:
+            total += float(sb["price"]) * int(body.add_on_snack_count)
+    payload = body.model_dump()
+    payload["estimated_total"] = round(total, 2)
+    obj = QuoteRequest(**payload)
     await db.quote_requests.insert_one(obj.model_dump())
     return {"id": obj.id, "estimated_total": obj.estimated_total, "status": obj.status}
 

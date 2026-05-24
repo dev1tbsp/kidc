@@ -313,7 +313,7 @@ export default function QuotePage() {
               </div>
               <div className="space-y-1">
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 555 555 5555" className="rounded-2xl py-6" data-testid="input-phone" />
+                <Input id="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 555 555 5555" className="rounded-2xl py-6" data-testid="input-phone" />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="event_date">Preferred date</Label>
