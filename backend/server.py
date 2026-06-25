@@ -557,8 +557,14 @@ async def startup_event():
         await db.quote_requests.create_index("id", unique=True)
     except Exception as e:
         logger.warning(f"Index creation issue: {e}")
-    await seed_admin()
-    await seed_content()
+    try:
+        await seed_admin()
+    except Exception as e:
+        logger.error(f"Admin seed failed (non-fatal): {e}")
+    try:
+        await seed_content()
+    except Exception as e:
+        logger.error(f"Content seed failed (non-fatal): {e}")
 
 
 @app.on_event("shutdown")
@@ -573,16 +579,21 @@ async def root():
 
 app.include_router(api)
 
-# CORS - cookie-based auth needs explicit origins
+# CORS - cookie-based auth needs explicit origins (no wildcard allowed with credentials)
 _frontend = os.environ.get("FRONTEND_URL", "")
-_origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()]
+_origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip() and o.strip() != "*"]
 if _frontend and _frontend not in _origins:
     _origins.append(_frontend)
 _origins += ["http://localhost:3000"]
 
+# Regex covers Emergent's preview AND production domains so the app works on both
+# without needing env-var updates after each redeploy.
+EMERGENT_ORIGIN_REGEX = r"https://[a-z0-9-]+\.(emergent\.host|preview\.emergentagent\.com|cluster-\d+\.deploy\.emergentcf\.cloud)"
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_origins or ["*"],
+    allow_origins=_origins,
+    allow_origin_regex=EMERGENT_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
