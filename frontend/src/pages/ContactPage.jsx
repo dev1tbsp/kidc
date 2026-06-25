@@ -50,7 +50,7 @@ export default function ContactPage() {
             </Link>
             <div className="flex gap-2">
               <a href="https://instagram.com/LittleBashCo.in" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Instagram className="w-5 h-5" /></a>
-              <a href="https://facebook.com/LittleBashCo" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Facebook className="w-5 h-5" /></a>
+              <a href="https://facebook.com/LittleBashCo.in" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Facebook className="w-5 h-5" /></a>
             </div>
           </div>
         </div>
