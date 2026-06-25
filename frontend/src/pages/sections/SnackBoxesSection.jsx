@@ -25,7 +25,7 @@ export default function SnackBoxesSection({ items = [] }) {
                 <div className="relative h-56 overflow-hidden">
                   <img src={box.image} alt={box.name} className="w-full h-full object-cover" />
                   <div className="absolute top-4 right-4 bg-white rounded-2xl px-4 py-2 shadow-lg">
-                    <span className="font-heading text-2xl font-black text-slate-900">${box.price}</span>
+                    <span className="font-heading text-2xl font-black text-slate-900">₹{box.price}</span>
                     <span className="text-xs text-slate-500 font-bold ml-1">/box</span>
                   </div>
                 </div>

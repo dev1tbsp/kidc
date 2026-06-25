@@ -40,7 +40,7 @@ export default function PackagesSection({ items = [] }) {
                 </span>
                 <h3 className="font-heading text-3xl font-bold text-slate-900 mb-2">{p.name}</h3>
                 <div className="mb-6 flex items-baseline gap-2">
-                  <span className="font-heading text-5xl font-black text-slate-900">${p.price_per_child}</span>
+                  <span className="font-heading text-5xl font-black text-slate-900">₹{p.price_per_child}</span>
                   <span className="text-slate-500 text-sm font-semibold">/ child</span>
                 </div>
                 <p className="text-slate-500 text-xs font-bold mb-4">

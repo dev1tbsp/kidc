@@ -116,7 +116,7 @@ export default function QuotePage() {
           You're booked into our queue!
         </h1>
         <p className="text-lg text-slate-700 mb-6">
-          Your estimated total is <span className="font-heading font-black text-sky-600 text-2xl">${submitted.estimate}</span>. We'll reach out within 24 hours to lock in the details.
+          Your estimated total is <span className="font-heading font-black text-sky-600 text-2xl">₹{submitted.estimate}</span>. We'll reach out within 24 hours to lock in the details.
         </p>
         <a href="/" className="inline-block">
           <Button className="rounded-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-6 font-bold">Back to home</Button>
@@ -208,7 +208,7 @@ export default function QuotePage() {
                     {p.popular && <span className="inline-block px-2 py-0.5 rounded-full bg-amber-400 text-slate-900 text-xs font-black uppercase mb-2">Popular</span>}
                     <h3 className="font-heading text-2xl font-bold">{p.name}</h3>
                     <p className="text-xs text-slate-500 font-bold mb-3">{p.tagline}</p>
-                    <p className="font-heading text-3xl font-black text-slate-900">${p.price_per_child}<span className="text-sm font-bold text-slate-500">/child</span></p>
+                    <p className="font-heading text-3xl font-black text-slate-900">₹{p.price_per_child}<span className="text-sm font-bold text-slate-500">/child</span></p>
                     <ul className="mt-3 space-y-1">
                       {p.features.slice(0, 3).map((f, i) => (
                         <li key={i} className="text-xs text-slate-600 flex gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />{f}</li>
