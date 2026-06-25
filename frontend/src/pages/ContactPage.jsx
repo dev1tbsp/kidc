@@ -23,7 +23,7 @@ export default function ContactPage() {
         <div className="grid md:grid-cols-3 gap-5 mb-12">
           {[
             { icon: Phone, label: "Call us", value: "+91 (8929) 112 775", href: "tel:+918929112775", color: "bg-sky-100 text-sky-700" },
-            { icon: Mail, label: "Email us", value: "hello@littlebashco.in", href: "mailto:hello@littlebashco.in", color: "bg-amber-100 text-amber-700" },
+            { icon: Mail, label: "Email us", value: "sales@littlebashco.in", href: "mailto:sales@littlebashco.in", color: "bg-amber-100 text-amber-700" },
             { icon: MapPin, label: "Visit us", value: "H 39, Sector 70, Noida", href: "#", color: "bg-pink-100 text-pink-700" },
           ].map((c, i) => {
             const Icon = c.icon;

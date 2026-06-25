@@ -44,7 +44,7 @@ export default function Footer() {
             <h4 className="font-heading text-lg font-bold mb-4">Reach Us</h4>
             <ul className="space-y-3 text-slate-300 text-sm">
               <li className="flex gap-2 items-start"><Phone className="w-4 h-4 mt-0.5 text-amber-400" /> +91 (8929) 112 775</li>
-              <li className="flex gap-2 items-start"><Mail className="w-4 h-4 mt-0.5 text-amber-400" /> hello@littlebashco.in</li>
+              <li className="flex gap-2 items-start"><Mail className="w-4 h-4 mt-0.5 text-amber-400" /> sales@littlebashco.in</li>
               <li className="flex gap-2 items-start"><MapPin className="w-4 h-4 mt-0.5 text-amber-400" /> H 39, Sector 70, Noida</li>
             </ul>
           </div>

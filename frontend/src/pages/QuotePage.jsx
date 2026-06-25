@@ -277,7 +277,7 @@ export default function QuotePage() {
                       <div className="p-4">
                         <p className="font-heading font-bold">{s.name}</p>
                         <p className="text-xs text-slate-600 mt-1">{s.description}</p>
-                        <p className="font-heading font-black text-emerald-600 mt-2">${s.price} <span className="text-xs text-slate-500 font-bold">/box</span></p>
+                        <p className="font-heading font-black text-emerald-600 mt-2">₹{s.price} <span className="text-xs text-slate-500 font-bold">/box</span></p>
                       </div>
                     </button>
                   );
@@ -331,7 +331,7 @@ export default function QuotePage() {
             <div className="mt-8 rounded-3xl bg-gradient-to-r from-sky-500 to-sky-600 text-white p-6 flex flex-wrap items-center justify-between gap-4" data-testid="quote-estimate">
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider text-sky-100">Estimated total</p>
-                <p className="font-heading text-4xl font-black" data-testid="quote-calculator-total">${estimate}</p>
+                <p className="font-heading text-4xl font-black" data-testid="quote-calculator-total">₹{estimate}</p>
               </div>
               <div className="text-sky-100 text-sm max-w-xs text-right">
                 {form.guest_count} kids × {selectedPackage?.name || "(pick a package)"}{form.add_on_snack_count > 0 && ` + ${form.add_on_snack_count} extra boxes`}
