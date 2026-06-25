@@ -101,7 +101,7 @@ export default function AdminDashboard() {
 const packageFields = [
   { key: "name", label: "Name", type: "text" },
   { key: "tagline", label: "Tagline", type: "text" },
-  { key: "price_per_child", label: "Price per child ($)", type: "number" },
+  { key: "price_per_child", label: "Price per child (₹)", type: "number" },
   { key: "min_guests", label: "Minimum guests", type: "number" },
   { key: "features", label: "Features (comma-sep)", type: "list" },
   { key: "activities", label: "Activities (comma-sep)", type: "list" },
@@ -129,7 +129,7 @@ const activityFields = [
 const snackBoxFields = [
   { key: "name", label: "Name", type: "text" },
   { key: "description", label: "Description", type: "textarea" },
-  { key: "price", label: "Price ($)", type: "number" },
+  { key: "price", label: "Price (₹)", type: "number" },
   { key: "items", label: "Items (comma-sep)", type: "list" },
   { key: "image", label: "Image", type: "image" },
   { key: "order", label: "Order", type: "number" },

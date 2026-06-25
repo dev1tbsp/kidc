@@ -112,8 +112,8 @@ export default function CrudAdmin({ name, title, fields }) {
             </div>
             {item.url && <img src={item.url} alt={item.caption || ""} className="w-full h-32 object-cover rounded-2xl mb-2" />}
             <p className="text-xs text-slate-600 line-clamp-2">{item.description || item.message || item.tagline || item.category || ""}</p>
-            {item.price_per_child !== undefined && <p className="text-sm font-bold text-sky-600 mt-2">${item.price_per_child}/child</p>}
-            {item.price !== undefined && item.price_per_child === undefined && <p className="text-sm font-bold text-sky-600 mt-2">${item.price}</p>}
+            {item.price_per_child !== undefined && <p className="text-sm font-bold text-sky-600 mt-2">₹{item.price_per_child}/child</p>}
+            {item.price !== undefined && item.price_per_child === undefined && <p className="text-sm font-bold text-sky-600 mt-2">₹{item.price}</p>}
           </div>
         ))}
       </div>
