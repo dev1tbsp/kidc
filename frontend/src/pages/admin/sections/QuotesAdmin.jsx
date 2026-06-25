@@ -65,7 +65,7 @@ export default function QuotesAdmin() {
               </div>
             </div>
             <div className="text-right">
-              <p className="font-heading text-2xl font-black text-sky-600">${q.estimated_total}</p>
+              <p className="font-heading text-2xl font-black text-sky-600">₹{q.estimated_total}</p>
               <p className="text-xs text-slate-500">{q.guest_count} kids · {q.package_name || "no pkg"}</p>
             </div>
           </div>
