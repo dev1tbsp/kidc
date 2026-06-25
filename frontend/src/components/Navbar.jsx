@@ -19,7 +19,7 @@ export default function Navbar() {
           <span className="w-10 h-10 rounded-2xl bg-sky-500 text-white grid place-items-center shadow-lg shadow-sky-500/30 group-hover:rotate-6 transition">
             <PartyPopper className="w-5 h-5" />
           </span>
-          <span className="font-heading text-2xl font-bold text-slate-900">Kids Feast</span>
+          <span className="font-heading text-2xl font-bold text-slate-900">Little Bash Co</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

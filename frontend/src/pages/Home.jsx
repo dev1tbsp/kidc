@@ -16,7 +16,7 @@ export default function Home() {
   });
 
   useSEO({
-    title: "Kids Feast — Birthday Party Catering & Activities for Kids",
+    title: "Little Bash Co — Birthday Party Catering & Activities for Kids",
     description: "Stress-free kids birthday parties: themed catering, hands-on activities, snack boxes & instant quotes. By age group. Book the magic today.",
     image: "https://images.unsplash.com/photo-1530104091755-015d31dfa0b9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxraWRzJTIwYmlydGhkYXklMjBwYXJ0eSUyMHBsYXlpbmclMjBiYWxsb29uc3xlbnwwfHx8fDE3Nzk2MTQ3MTl8MA&ixlib=rb-4.1.0&q=85",
   });

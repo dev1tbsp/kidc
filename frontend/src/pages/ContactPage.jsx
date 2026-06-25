@@ -5,8 +5,8 @@ import useSEO from "@/lib/useSEO";
 
 export default function ContactPage() {
   useSEO({
-    title: "Contact — Kids Feast Catering",
-    description: "Get in touch with Kids Feast: phone, email, social, address. Or skip ahead and build a quote in minutes.",
+    title: "Contact — Little Bash Co",
+    description: "Get in touch with Little Bash Co: phone, email, social, address. Or skip ahead and build a quote in minutes.",
   });
 
   return (
@@ -22,9 +22,9 @@ export default function ContactPage() {
 
         <div className="grid md:grid-cols-3 gap-5 mb-12">
           {[
-            { icon: Phone, label: "Call us", value: "+1 (555) 123-KIDS", href: "tel:+15551235437", color: "bg-sky-100 text-sky-700" },
-            { icon: Mail, label: "Email us", value: "hello@kidsfeast.com", href: "mailto:hello@kidsfeast.com", color: "bg-amber-100 text-amber-700" },
-            { icon: MapPin, label: "Visit us", value: "123 Party Lane, Funtown", href: "#", color: "bg-pink-100 text-pink-700" },
+            { icon: Phone, label: "Call us", value: "+91 (8929) 112 775", href: "tel:+918929112775", color: "bg-sky-100 text-sky-700" },
+            { icon: Mail, label: "Email us", value: "hello@littlebashco.in", href: "mailto:hello@littlebashco.in", color: "bg-amber-100 text-amber-700" },
+            { icon: MapPin, label: "Visit us", value: "H 39, Sector 70, Noida", href: "#", color: "bg-pink-100 text-pink-700" },
           ].map((c, i) => {
             const Icon = c.icon;
             return (
@@ -49,8 +49,8 @@ export default function ContactPage() {
               </Button>
             </Link>
             <div className="flex gap-2">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Instagram className="w-5 h-5" /></a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Facebook className="w-5 h-5" /></a>
+              <a href="https://instagram.com/LittleBashCo.in" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Instagram className="w-5 h-5" /></a>
+              <a href="https://facebook.com/LittleBashCo" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/15 grid place-items-center hover:bg-white/25"><Facebook className="w-5 h-5" /></a>
             </div>
           </div>
         </div>

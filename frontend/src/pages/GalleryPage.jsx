@@ -8,8 +8,8 @@ export default function GalleryPage() {
   const [filter, setFilter] = useState("all");
 
   useSEO({
-    title: "Gallery — Kids Feast Parties in Action",
-    description: "Real parties, real smiles. Browse photos of birthday parties hosted by Kids Feast — themes, food, activities and more.",
+    title: "Gallery — Little Bash Parties in Action",
+    description: "Real parties, real smiles. Browse photos of birthday parties hosted by Little Bash Co — themes, food, activities and more.",
   });
 
   useEffect(() => {

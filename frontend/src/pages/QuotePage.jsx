@@ -23,7 +23,7 @@ export default function QuotePage() {
   const initialPackageId = location.state?.packageId || null;
 
   useSEO({
-    title: "Build Your Quote — Kids Feast Catering",
+    title: "Build Your Quote — Little Bash Catering",
     description: "Get an instant, transparent quote for your child's birthday party. Pick age, package, activities & snack boxes.",
   });
 

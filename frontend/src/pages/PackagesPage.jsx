@@ -10,7 +10,7 @@ export default function PackagesPage() {
   const [snackBoxes, setSnackBoxes] = useState([]);
 
   useSEO({
-    title: "Packages & Pricing — Kids Feast Catering",
+    title: "Packages & Pricing — Little Bash Catering",
     description: "Compare our Mini Bash, Super Party and Mega Blast packages. Themed décor, food, activities and dedicated hosts included.",
   });
 

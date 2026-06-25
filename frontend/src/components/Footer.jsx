@@ -14,16 +14,16 @@ export default function Footer() {
               <span className="w-12 h-12 rounded-2xl bg-amber-400 text-slate-900 grid place-items-center">
                 <PartyPopper className="w-6 h-6" />
               </span>
-              <span className="font-heading text-3xl font-bold">Kids Feast</span>
+              <span className="font-heading text-3xl font-bold">Little Bash Co</span>
             </div>
             <p className="text-slate-300 max-w-md leading-relaxed">
               We craft unforgettable birthday parties for kids of every age — vibrant catering, hands-on activities and stress-free planning, end to end.
             </p>
             <div className="flex gap-3 mt-6">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full bg-white/10 hover:bg-pink-400 hover:text-slate-900 grid place-items-center transition" data-testid="footer-instagram">
+              <a href="https://instagram.com/LittleBashCo.in" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full bg-white/10 hover:bg-pink-400 hover:text-slate-900 grid place-items-center transition" data-testid="footer-instagram">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full bg-white/10 hover:bg-sky-400 hover:text-slate-900 grid place-items-center transition" data-testid="footer-facebook">
+              <a href="https://facebook.com/LittleBashCo" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full bg-white/10 hover:bg-sky-400 hover:text-slate-900 grid place-items-center transition" data-testid="footer-facebook">
                 <Facebook className="w-5 h-5" />
               </a>
             </div>
@@ -43,15 +43,15 @@ export default function Footer() {
           <div>
             <h4 className="font-heading text-lg font-bold mb-4">Reach Us</h4>
             <ul className="space-y-3 text-slate-300 text-sm">
-              <li className="flex gap-2 items-start"><Phone className="w-4 h-4 mt-0.5 text-amber-400" /> +1 (555) 123-KIDS</li>
-              <li className="flex gap-2 items-start"><Mail className="w-4 h-4 mt-0.5 text-amber-400" /> hello@kidsfeast.com</li>
-              <li className="flex gap-2 items-start"><MapPin className="w-4 h-4 mt-0.5 text-amber-400" /> 123 Party Lane, Funtown</li>
+              <li className="flex gap-2 items-start"><Phone className="w-4 h-4 mt-0.5 text-amber-400" /> +91 (8929) 112 775</li>
+              <li className="flex gap-2 items-start"><Mail className="w-4 h-4 mt-0.5 text-amber-400" /> hello@littlebashco.in</li>
+              <li className="flex gap-2 items-start"><MapPin className="w-4 h-4 mt-0.5 text-amber-400" /> H 39, Sector 70, Noida</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-400 text-sm">© {new Date().getFullYear()} Kids Feast Co. All rights reserved.</p>
+          <p className="text-slate-400 text-sm">© {new Date().getFullYear()} Little Bash Co. All rights reserved.</p>
           <Link to="/admin/login" className="text-slate-500 hover:text-slate-300 text-xs" data-testid="footer-admin-link">
             Staff Login
           </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
 
       <div className="relative">
         <h2 className="font-heading text-[18vw] md:text-[14vw] font-black text-white/[0.04] leading-none text-center select-none">
-          KIDS FEAST
+          LITTLE BASH CO
         </h2>
       </div>
     </footer>
