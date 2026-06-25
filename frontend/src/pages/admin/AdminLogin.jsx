@@ -42,7 +42,7 @@ export default function AdminLogin() {
           <span className="w-12 h-12 rounded-2xl bg-sky-500 text-white grid place-items-center">
             <PartyPopper className="w-6 h-6" />
           </span>
-          <span className="font-heading text-2xl font-bold">Kids Feast</span>
+          <span className="font-heading text-2xl font-bold">Little Bash Co</span>
         </Link>
 
         <div className="bg-white rounded-[2rem] shadow-2xl shadow-sky-500/10 p-8 sm:p-10" data-testid="admin-login-card">
@@ -55,7 +55,7 @@ export default function AdminLogin() {
           <form onSubmit={submit} className="mt-7 space-y-4">
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="admin@kidsfeast.com" className="rounded-2xl py-6" required data-testid="login-email" />
+              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" className="rounded-2xl py-6" required data-testid="login-email" />
             </div>
             <div className="space-y-1">
               <Label htmlFor="password">Password</Label>

@@ -37,7 +37,7 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-3">
             <span className="w-10 h-10 rounded-2xl bg-sky-500 text-white grid place-items-center"><PartyPopper className="w-5 h-5" /></span>
             <div>
-              <p className="font-heading text-xl font-bold leading-tight">Kids Feast Admin</p>
+              <p className="font-heading text-xl font-bold leading-tight">Little Bash Co Admin</p>
               <p className="text-xs text-slate-500">Signed in as {user?.email}</p>
             </div>
           </div>
